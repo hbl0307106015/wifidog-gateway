@@ -62,6 +62,11 @@ int is_auth_online();
  */
 char * get_status_text();
 
+/*
+ * @brief Save pid of this wifidog in pid file
+ */
+void save_pid_file(const char *pf);
+
 #define LOCK_GHBN() do { \
 	debug(LOG_DEBUG, "Locking wd_gethostbyname()"); \
 	pthread_mutex_lock(&ghbn_mutex); \

@@ -540,3 +540,20 @@ get_ext_iface(void)
 
 		return safe_strdup(buffer);
 	}
+
+/*
+ * @brief Save pid of this wifidog in pid file
+ */
+void
+save_pid_file(const char *pf)
+{
+	if (pf) {
+		FILE *f = fopen(pf, "w");
+		if (f) {
+			fprintf(f, "%lu\n", getpid());
+			fclose(f);
+		}
+	}
+
+	return;
+}

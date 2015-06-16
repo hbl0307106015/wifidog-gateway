@@ -68,6 +68,7 @@ usage(void)
     printf("  -v            Print version information\n");
     printf("  -x pid        Used internally by WiFiDog when re-starting itself *DO NOT ISSUE THIS SWITCH MANUAlLY*\n");
     printf("  -i <path>     Internal socket path used when re-starting self\n");
+    printf("  -p <path>     Save pid to file\n");
     printf("\n");
 }
 
@@ -86,7 +87,7 @@ void parse_commandline(int argc, char **argv) {
 	i=0;
 	restartargv[i++] = safe_strdup(argv[0]);
 
-    while (-1 != (c = getopt(argc, argv, "c:hfd:sw:vx:i:"))) {
+    while (-1 != (c = getopt(argc, argv, "c:hfd:sw:vx:i:p:"))) {
 
 		skiponrestart = 0;
 
@@ -146,6 +147,14 @@ void parse_commandline(int argc, char **argv) {
 					free(config->internal_sock);
 					config->internal_sock = safe_strdup(optarg);
 				}
+				break;
+
+			case 'p':
+				if (optarg) {
+					config->save_pid = 1;
+					strncpy(config->pidfile, optarg, sizeof(config->pidfile));
+				} else
+					printf("The expected PID file path to the wifidog was not supplied!\n");
 				break;
 
 			default:
