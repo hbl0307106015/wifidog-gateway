@@ -65,7 +65,7 @@ char * get_status_text();
 /*
  * @brief Save pid of this wifidog in pid file
  */
-void save_pid_file(const char *pf);
+void save_pid_file(const char *);
 
 #define LOCK_GHBN() do { \
 	debug(LOG_DEBUG, "Locking wd_gethostbyname()"); \

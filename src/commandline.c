@@ -150,13 +150,14 @@ void parse_commandline(int argc, char **argv) {
 				break;
 
 			case 'p':
-				if (optarg) {
-					config->save_pid = 1;
-					strncpy(config->pidfile, optarg, sizeof(config->pidfile));
-				} else
-					printf("The expected PID file path to the wifidog was not supplied!\n");
-				break;
-
+            if (optarg) {
+                free(config->pidfile);
+                config->pidfile = safe_strdup(optarg);
+            } else {
+                fprintf(stdout, "The expected PID file path to the wifidog was not supplied!\n");
+                exit(1);
+            }
+            break;
 			default:
 				usage();
 				exit(1);

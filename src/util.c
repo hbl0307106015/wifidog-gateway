@@ -550,7 +550,7 @@ save_pid_file(const char *pf)
 	if (pf) {
 		FILE *f = fopen(pf, "w");
 		if (f) {
-			fprintf(f, "%lu\n", getpid());
+			fprintf(f, "%zu\n", getpid());
 			fclose(f);
 		}
 	}

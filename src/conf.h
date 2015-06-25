@@ -137,8 +137,7 @@ typedef struct {
     char *wdctl_sock;		/**< @brief wdctl path to socket */
     char *internal_sock;		/**< @brief internal path to socket */
     int daemon;			/**< @brief if daemon > 0, use daemon mode */
-    int save_pid;			/**< @brief if save_pid == 1, save the pid in file */
-    char pidfile[255];		/* pid file path of wifidog */
+    char *pidfile;		/* pid file path of wifidog */
     int debuglevel;		/**< @brief Debug information verbosity */
     char *external_interface;	/**< @brief External network interface name for
 				     firewall rules */
